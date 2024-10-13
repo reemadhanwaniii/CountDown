@@ -1,41 +1,40 @@
-#input{
-    border: none;
+#input {
+    border : none;
+
 }
 
-#submit{
-    padding: 5px;
+#submit {
+    padding : 0.2rem;
     color: white;
     background-color: cadetblue;
     border: none;
     margin-left: 10px;
 }
 
-#display{
+#display {
     margin-top: 35px;
     background-color: dodgerblue;
     color: black;
     border-radius: 20px;
     display: flex;
     align-items: center;
-   
+    padding: 2rem;
 }
 
-ul{
+ul {
     padding: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
-}
+} 
 
-li{
+li {
     list-style-type: none;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-
-
-span{
+span {
     font-size: 40px;
 }

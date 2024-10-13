@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Countdown.css";
 
 function Countdown() {
@@ -10,13 +10,33 @@ function Countdown() {
     function handleSubmit(){
         id.current = setInterval(()=>{
             setDiff(new Date(target) - new Date());
-            if(diff < 0) {
-                clearInterval(id.current);
-            }
         },1000)
-       
     }
 
+    useEffect(()=>{
+        if(diff < 0){
+            clearInterval(id.current);
+        }
+    },[diff]);
+
+    const getDays = () => {
+        return Math.floor(diff/(1000*60*60*24));
+    }
+
+    const getHours = () =>{
+        const hoursInMs = diff%(1000*60*60*24);
+        return Math.floor(hoursInMs/(1000*60*60));
+    }
+
+    const getMinutes = () => {
+        const minInMs =diff%(1000*60*60);
+        return Math.floor(minInMs/(1000*60*60));
+    }
+
+    const getSeconds = () => {
+        const secInMs = diff%(1000*60);
+        return Math.floor(secInMs/1000);
+    }
     return(
         <>
             <h1>Countdown Timer App</h1>
@@ -30,10 +50,10 @@ function Countdown() {
             </div>
             <div id="display">
                 <ul>
-                    <li><span id="days"></span>Days</li>
-                    <li><span id="hours"></span>Hours</li>
-                    <li><span id="minutes"></span>Minutes</li>
-                    <li><span id="seconds"></span>Seconds</li>
+                    <li><span id="days">{getDays()}</span>Days</li>
+                    <li><span id="hours">{getHours()}</span>Hours</li>
+                    <li><span id="minutes">{getMinutes()}</span>Minutes</li>
+                    <li><span id="seconds">{getSeconds()}</span>Seconds</li>
                 </ul>
             </div>
         </>
