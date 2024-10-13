@@ -6,9 +6,9 @@ function Countdown() {
     const [target,setTarget] = useState(null);
     const [diff,setDiff] = useState(0);
 
-    useEffect(() =>{
+    function handleSubmit(){
         setDiff(new Date(target) - new Date());
-    },[target]);
+    }
 
     return(
         <>
@@ -19,7 +19,7 @@ function Countdown() {
                         id="date-time"
                         onChange={(e)=> setTarget(e.target.value)}
                 />
-                <button id="submit">Start</button>
+                <button id="submit" onClick={handleSubmit}>Start</button>
             </div>
             <div id="display">
                 <ul>
