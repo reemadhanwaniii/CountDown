@@ -1,13 +1,20 @@
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import "./Countdown.css";
 
 function Countdown() {
 
     const [target,setTarget] = useState(null);
     const [diff,setDiff] = useState(0);
+    const id = useRef(null);
 
     function handleSubmit(){
-        setDiff(new Date(target) - new Date());
+        id.current = setInterval(()=>{
+            setDiff(new Date(target) - new Date());
+            if(diff < 0) {
+                clearInterval(id.current);
+            }
+        },1000)
+       
     }
 
     return(
